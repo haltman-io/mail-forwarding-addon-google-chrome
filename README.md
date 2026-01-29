@@ -7,9 +7,8 @@ No, it’s not spyware.
 No, it’s not “freemium”.
 No, we’re not here to upsell you shit.
 
-You can **view, create, and delete mail aliases** using your own API key.
-Generate it yourself at:
-👉 https://forward.haltman.io/
+You can **view, create, and delete mail aliases** with your own API key.
+Get an API key at: 👉 https://forward.haltman.io/
 
 No sign-up circus.
 No marketing funnels.
@@ -48,19 +47,21 @@ Because everything else out there **sucks**.
 We looked.
 Hard.
 
-What we found was a landfill of SaaS trash. “It’s open-source, BUT…”: 
-> YoU CaN OnLy hAvE **1 AliaS**
-> pAy uS To uNlOcK ThE ReSt
-> UpLoAd yOuR StUdEnT Id tO OuR ToTaLlY-NoT-CoMpRoMiSeD InFrA  
-> fReE TrIaL If yOu bEg nIcElY AnD GiVe uS YoUr dAtA  
-> EnTeRpRiSe pLaN If yOu eNjOy bEiNg rObBeD  
+What we found was a landfill of SaaS trash:
+
+- “Open-source, but you get one alias.”
+- Pay us to unlock the rest.
+- Upload your student ID to our totally-not-compromised infra.
+- Free trial if you beg nicely and hand over your data.
+- Overpriced enterprise plan if you enjoy being robbed.
+- Fill out this form: full name, DOB, phone, security question, credit card, proof of insurance. (Yes, all required to send EMAIL.)
 
 Same old bullshit.
 Different landing page.
 
 So we said: **fuck it**.
 
-We built our own, using tools we actually trust and have been abusing for decades:
+We built our own, using tools we actually trust and have abused for decades:
 
 - Postfix
 - MariaDB
