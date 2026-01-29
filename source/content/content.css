@@ -1,0 +1,7 @@
+/* content.css
+ *
+ * The Mail Alias Manager UI is now rendered via Shadow DOM in content.js
+ * to be immune to the site's CSS.
+ *
+ * This file is intentionally neutral.
+ */

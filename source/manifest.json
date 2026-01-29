@@ -1,0 +1,56 @@
+{
+  "manifest_version": 3,
+  "name": "Email Alias Manager (Free)",
+  "version": "0.1.0",
+  "description": "View, create and delete mail aliases using your API key.",
+  "icons": {
+    "16": "image/icon.png",
+    "32": "image/icon32.png",
+    "48": "image/icon48.png",
+    "128": "image/icon128.png"
+  },
+  "action": {
+    "default_title": "Email Alias Manager",
+    "default_popup": "popup/popup.html"
+  },
+  "options_page": "options/options.html",
+  "background": {
+    "service_worker": "background/background.js"
+  },
+  "permissions": [
+    "storage",
+    "tabs",
+    "activeTab",
+    "notifications",
+    "clipboardWrite"
+  ],
+  "host_permissions": [
+    "https://mail.haltman.io/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "lib/browser-polyfill.js",
+        "content/content.js"
+      ],
+      "css": [
+        "content/content.css"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "data/dictionary.json",
+        "icons/icon-96.png"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
+    }
+  ]
+}

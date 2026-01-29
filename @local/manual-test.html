@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Mail Alias Manager - Manual Test</title>
+    <style>
+      :root {
+        color-scheme: light;
+        font-family: Arial, sans-serif;
+      }
+      body {
+        margin: 24px;
+        background: #f6f7f9;
+        color: #111;
+      }
+      h1 {
+        margin: 0 0 12px;
+        font-size: 20px;
+      }
+      .card {
+        background: #fff;
+        border: 1px solid #d9dde2;
+        border-radius: 10px;
+        padding: 16px;
+        margin-bottom: 16px;
+      }
+      label {
+        display: block;
+        font-size: 13px;
+        color: #333;
+        margin-bottom: 6px;
+      }
+      input {
+        width: 320px;
+        max-width: 100%;
+        padding: 8px 10px;
+        border: 1px solid #c9ced6;
+        border-radius: 6px;
+        font-size: 14px;
+      }
+      .row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        align-items: center;
+      }
+      .note {
+        font-size: 12px;
+        color: #666;
+      }
+      button {
+        padding: 8px 12px;
+        border: 1px solid #c9ced6;
+        background: #f0f2f5;
+        border-radius: 6px;
+        cursor: pointer;
+      }
+      .log {
+        font-size: 12px;
+        color: #444;
+        margin-top: 8px;
+        white-space: pre-wrap;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Manual test page</h1>
+
+    <div class="card">
+      <div class="row">
+        <div>
+          <label for="email-1">Email 1 (input type="email")</label>
+          <input id="email-1" type="email" placeholder="user@example.com" />
+        </div>
+        <div>
+          <label for="text-1">Texto normal (input type="text")</label>
+          <input id="text-1" type="text" placeholder="Não deve aparecer UI" />
+        </div>
+      </div>
+      <p class="note">Verifique se a UI aparece apenas nos inputs de email.</p>
+    </div>
+
+    <div class="card">
+      <div class="row">
+        <div>
+          <label for="email-2">Email 2 (formulário)</label>
+          <input id="email-2" type="email" placeholder="alias@dominio.com" />
+        </div>
+        <div>
+          <label for="email-3">Email 3 (vazio)</label>
+          <input id="email-3" type="email" />
+        </div>
+      </div>
+      <p class="note">Teste Generate / Choose em cada input.</p>
+    </div>
+
+    <div class="card">
+      <div class="row">
+        <button id="add-email">Adicionar input de email dinamicamente</button>
+        <button id="add-text">Adicionar input de texto dinamicamente</button>
+      </div>
+      <div id="dynamic-area" style="margin-top:12px;"></div>
+      <div class="log" id="log"></div>
+      <p class="note">Simula SPA: novos inputs devem receber a UI após alguns instantes.</p>
+    </div>
+
+    <script>
+      (function () {
+        const dynamicArea = document.getElementById("dynamic-area");
+        const log = document.getElementById("log");
+        let count = 0;
+
+        function logLine(msg) {
+          log.textContent += msg + "\n";
+        }
+
+        document.getElementById("add-email").addEventListener("click", () => {
+          count += 1;
+          const wrap = document.createElement("div");
+          wrap.style.marginTop = "10px";
+          const label = document.createElement("label");
+          label.textContent = "Email dinâmico " + count;
+          const input = document.createElement("input");
+          input.type = "email";
+          input.placeholder = "dyn" + count + "@exemplo.com";
+          wrap.appendChild(label);
+          wrap.appendChild(input);
+          dynamicArea.appendChild(wrap);
+          logLine("Adicionado input de email #" + count);
+        });
+
+        document.getElementById("add-text").addEventListener("click", () => {
+          count += 1;
+          const wrap = document.createElement("div");
+          wrap.style.marginTop = "10px";
+          const label = document.createElement("label");
+          label.textContent = "Texto dinâmico " + count;
+          const input = document.createElement("input");
+          input.type = "text";
+          input.placeholder = "texto " + count;
+          wrap.appendChild(label);
+          wrap.appendChild(input);
+          dynamicArea.appendChild(wrap);
+          logLine("Adicionado input de texto #" + count);
+        });
+      })();
+    </script>
+  </body>
+</html>

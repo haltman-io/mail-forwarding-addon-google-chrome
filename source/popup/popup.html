@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Email Alias Manager</title>
+    <link rel="stylesheet" href="./popup.css" />
+  </head>
+
+  <body>
+    <div class="app">
+      <!-- Top bar -->
+      <header class="top">
+        <div class="brand">
+          <div class="brandText">
+            <div class="brandTitle">Email Alias Manager</div>
+            <div class="brandSub">Powered by <b>haltman.io</b>.</div>
+          </div>
+        </div>
+
+<div class="topActions">
+  <button id="btnLock" class="iconBtn hidden" title="Lock/Unlock" aria-label="Lock/Unlock">🔒</button>
+  <button id="btnRefresh" class="iconBtn" title="Refresh" aria-label="Refresh">⟲</button>
+  <button id="btnOptions" class="iconBtn" title="Settings" aria-label="Settings">⚙</button>
+</div>
+
+      </header>
+
+      <!-- Setup (first-run) -->
+      <section id="setup" class="panel hidden">
+        <div class="panelHead">
+          <div>
+            <div class="hTitle">First run</div>
+            <div class="hSub">Provide your API key to manage aliases.</div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label" for="apiKeyInput">API-Key</label>
+          <input
+            id="apiKeyInput"
+            class="input"
+            type="password"
+            placeholder="64 chars (a-z0-9)"
+            autocomplete="off"
+          />
+          <div class="help">The key is saved locally (storage.local)..</div>
+        </div>
+
+        <div class="row">
+          <button id="btnSaveKey" class="btn primary">Save</button>
+        </div>
+
+        <div id="setupErr" class="alert hidden"></div>
+      </section>
+
+      <section id="unlock" class="panel hidden">
+        <div class="panelHead">
+          <div>
+            <div class="hTitle">Locked</div>
+            <div class="hSub">Enter your password to unlock this session.</div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label" for="unlockPassword">Password</label>
+          <input id="unlockPassword" class="input" type="password" autocomplete="off" />
+        </div>
+
+        <div class="row">
+          <button id="btnUnlock" class="btn primary wide">Unlock</button>
+        </div>
+
+        <div id="unlockErr" class="alert hidden"></div>
+      </section>
+
+
+      <!-- Main -->
+      <section id="main" class="panel hidden">
+        <!-- Tabs -->
+        <div class="tabs" role="tablist" aria-label="Alias tabs">
+          <button id="tabCreate" class="tab active" role="tab" aria-selected="true">Create</button>
+          <button id="tabList" class="tab" role="tab" aria-selected="false">Aliases</button>
+        </div>
+
+        <div id="appErr" class="alert hidden"></div>
+
+        <!-- CREATE TAB -->
+        <div id="viewCreate" class="view">
+          <div class="card">
+            <div class="cardTitle">New alias</div>
+            <div class="cardSub">Create an alias using an allowed domain.</div>
+
+            <div class="grid2">
+              <div class="field">
+                <label class="label" for="handleInput">Handle</label>
+                <input id="handleInput" class="input" type="text" placeholder="hacker" autocomplete="off" />
+                <div class="help">Lowercase recommended.</div>
+              </div>
+
+            <div class="field">
+              <label class="label" for="domainSelect">Domain</label>
+              <select id="domainSelect" class="select">
+                <option value="" selected disabled>Select a domain</option>
+              </select>
+              <div class="help">Only allowed domains appear here.</div>
+            </div>
+
+            </div>
+
+            <div class="row">
+              <button id="btnCreate" class="btn primary wide">Create alias</button>
+            </div>
+            <div class="row">
+              <button id="btnGenRandom" class="btn wide">Generate random alias</button>
+            </div>
+
+
+            <div id="createMsg" class="toast hidden"></div>
+          </div>
+
+          <div class="card subtle">
+            <div class="mono small">
+              API: <span class="muted">https://mail.haltman.io</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- LIST TAB -->
+        <div id="viewList" class="view hidden">
+          <div class="card">
+            <div class="row between">
+              <div>
+                <div class="cardTitle">Your aliases</div>
+                <div class="cardSub">Search and delete.</div>
+              </div>
+              <div id="count" class="pill muted"></div>
+            </div>
+
+            <div class="field" style="margin-top:10px">
+              <label class="label" for="searchInput">Search</label>
+              <input id="searchInput" class="input" type="text" placeholder="type: segfault / proton / handle…" autocomplete="off" />
+            </div>
+
+            <div id="list" class="list"></div>
+          </div>
+
+          <div class="row">
+            <button id="btnLogout" class="btn danger wide">Remove API-Key</button>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <script src="../lib/browser-polyfill.js"></script>
+    <script type="module" src="./popup.js"></script>
+  </body>
+</html>

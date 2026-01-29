@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en-US">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Email Alias Manager • Settings</title>
+  <link rel="stylesheet" href="./options.css" />
+</head>
+
+<body>
+  <div class="wrap">
+    <header class="head">
+      <div>
+        <h1>Settings</h1>
+        <p class="muted">
+          Adjust the API-Key, the UI mode in forms, and (optionally) enable a password lock.
+        </p>
+      </div>
+    </header>
+
+    <!-- API KEY -->
+    <section class="card">
+      <div class="cardTitle">API-Key</div>
+      <div class="cardSub">
+        Used to authenticate API calls to <span class="mono">mail.haltman.io</span>.
+      </div>
+
+      <label class="lbl" for="apiKey">Key</label>
+      <input id="apiKey" class="input" type="password" placeholder="64 characters (a-z0-9)" autocomplete="off" />
+
+      <div class="row">
+        <button id="save" class="btn primary">Save</button>
+        <button id="clear" class="btn danger">Remove</button>
+      </div>
+
+      <div id="msg" class="toast hidden"></div>
+    </section>
+
+    <!-- DEFAULT DOMAIN -->
+    <section class="card">
+      <div class="cardTitle">Default domain</div>
+      <div class="cardSub">
+        Used as the preselected domain in the Create tab.
+      </div>
+
+      <label class="lbl" for="defaultDomain">Domain</label>
+      <select id="defaultDomain" class="select">
+        <option value="">Use last selection</option>
+      </select>
+
+      <div class="help">
+        Choose a domain to preselect in Create. Leave empty to use the last selected domain.
+      </div>
+
+      <div id="domainMsg" class="toast hidden"></div>
+      <div id="domainErr" class="alert hidden"></div>
+    </section>
+
+    <!-- SECURITY -->
+    <section class="card">
+      <div class="cardTitle">Security (Password lock)</div>
+      <div class="cardSub">
+        When enabled, the API-Key is <b>not stored in plaintext</b> in <span class="mono">storage.local</span>.
+        It is stored encrypted with <span class="mono">PBKDF2 + AES-256-GCM</span>.
+        The password is <b>never</b> stored.
+      </div>
+
+      <div class="grid2">
+        <div class="field">
+          <label class="lbl" for="lockPassword">New password</label>
+          <input id="lockPassword" type="password" class="input" autocomplete="off" />
+        </div>
+
+        <div class="field">
+          <label class="lbl" for="lockPassword2">Confirm password</label>
+          <input id="lockPassword2" type="password" class="input" autocomplete="off" />
+        </div>
+      </div>
+
+      <div class="row">
+        <button id="btnEnableLock" class="btn primary">Enable lock</button>
+        <button id="btnLockNow" class="btn">Lock now</button>
+      </div>
+
+      <div class="field" style="margin-top:12px">
+        <label class="lbl" for="disablePassword">Disable lock (current password)</label>
+        <input id="disablePassword" type="password" class="input" autocomplete="off" />
+      </div>
+
+      <div class="row">
+        <button id="btnDisableLock" class="btn danger">Disable lock</button>
+      </div>
+
+      <div id="secMsg" class="toast hidden"></div>
+      <div id="secErr" class="alert hidden"></div>
+    </section>
+
+  </div>
+
+  <script src="../lib/browser-polyfill.js"></script>
+  <script type="module" src="./options.js"></script>
+</body>
+
+</html>
