@@ -141,16 +141,6 @@ async function deleteAlias(apiKey, aliasEmail) {
   return data;
 }
 
-
-async function copyToClipboardViaTab(tabId, text) {
-    try {
-        const res = await browser.tabs.sendMessage(tabId, { type: "MAM_COPY_TEXT", text });
-        return Boolean(res && res.ok);
-    } catch {
-        return false;
-    }
-}
-
 async function notify(title, message) {
     try {
         await browser.notifications.create({
